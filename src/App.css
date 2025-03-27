@@ -1,5 +1,9 @@
-.logincontainer{
-    background-image: url('./assets/loginbackground.png');
+
+
+.logincontainer {
+    background-image: 
+        linear-gradient(46.33deg, rgba(33, 33, 33, 0.839216) 0%, #4242423d 178.98%), 
+        url('./assets/loginbackground.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

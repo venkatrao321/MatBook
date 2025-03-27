@@ -1,32 +1,45 @@
 import React from "react";
 import { Form, Input, Button, Checkbox } from "antd";
-import { GoogleOutlined, FacebookOutlined, AppleOutlined } from "@ant-design/icons";
-import '../app.css'
+import {
+  GoogleOutlined,
+  FacebookOutlined,
+  AppleOutlined,
+} from "@ant-design/icons";
+import logo from "../assets/logo.svg";
+import "../app.css";
 const Login = () => {
   return (
-    <div className="flex h-screen logincontainer">
+    <div className="logincontainer flex h-screen ">
       {/* Left Section */}
-      <div className="w-1/2 bg-green-100 flex flex-col justify-center items-center p-10">
-        <div className="text-center">
-          <img
-            src="../assets/logo.svg" // Replace with your logo URL
-            alt="HighBridge Logo"
-            className="mb-4"
-            height={100}
-            width={100}
-          />
-          <h1 className="text-4xl font-bold text-green-800 mb-2">HighBridge</h1>
-          <p className="text-lg font-semibold text-gray-600">Building the Future...</p>
-          <p className="text-sm text-gray-500 mt-2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-        </div>
+
+      <div className="w-1/2  flex flex-col justify-center items-center ">
+       
+          <div className="mb-25">
+            <img
+              src={logo} // Replace with your logo URL
+              alt="HighBridge Logo"
+              className="pr-[100px]"
+            />
+          </div>
+
+          <div className="flex w-1/2 flex-col items-start">
+            <h3 className="text-3xl font-bold text-white mb-2 ">
+              Building the Future...
+            </h3>
+            <p className="text-base text-white opacity-80">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+          </div>
+      
       </div>
 
       {/* Right Section */}
-      <div className="w-1/2 flex justify-center items-center bg-white">
-        <div className="w-3/4 max-w-md">
-          <h2 className="text-xl font-semibold text-gray-500 mb-1">WELCOME BACK!</h2>
+      <div className="w-1/2 flex justify-center items-center ">
+        <div className="mx-auto px-6 relative bg-white">
+          <h2 className="text-xl font-semibold text-gray-500 mb-1">
+            WELCOME BACK!
+          </h2>
           <h1 className="text-3xl font-bold mb-6">Log In to your Account</h1>
 
           <Form layout="vertical">
@@ -43,7 +56,9 @@ const Login = () => {
             <Form.Item
               label="Password"
               name="password"
-              rules={[{ required: true, message: "Please input your password!" }]}
+              rules={[
+                { required: true, message: "Please input your password!" },
+              ]}
             >
               <Input.Password placeholder="Type here..." />
             </Form.Item>
