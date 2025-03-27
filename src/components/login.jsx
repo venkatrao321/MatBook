@@ -1,0 +1,113 @@
+import React from "react";
+import { Form, Input, Button, Checkbox } from "antd";
+import { GoogleOutlined, FacebookOutlined, AppleOutlined } from "@ant-design/icons";
+import '../app.css'
+const Login = () => {
+  return (
+    <div className="flex h-screen logincontainer">
+      {/* Left Section */}
+      <div className="w-1/2 bg-green-100 flex flex-col justify-center items-center p-10">
+        <div className="text-center">
+          <img
+            src="../assets/logo.svg" // Replace with your logo URL
+            alt="HighBridge Logo"
+            className="mb-4"
+            height={100}
+            width={100}
+          />
+          <h1 className="text-4xl font-bold text-green-800 mb-2">HighBridge</h1>
+          <p className="text-lg font-semibold text-gray-600">Building the Future...</p>
+          <p className="text-sm text-gray-500 mt-2">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+        </div>
+      </div>
+
+      {/* Right Section */}
+      <div className="w-1/2 flex justify-center items-center bg-white">
+        <div className="w-3/4 max-w-md">
+          <h2 className="text-xl font-semibold text-gray-500 mb-1">WELCOME BACK!</h2>
+          <h1 className="text-3xl font-bold mb-6">Log In to your Account</h1>
+
+          <Form layout="vertical">
+            {/* Email Input */}
+            <Form.Item
+              label="Email"
+              name="email"
+              rules={[{ required: true, message: "Please input your email!" }]}
+            >
+              <Input placeholder="Type here..." />
+            </Form.Item>
+
+            {/* Password Input */}
+            <Form.Item
+              label="Password"
+              name="password"
+              rules={[{ required: true, message: "Please input your password!" }]}
+            >
+              <Input.Password placeholder="Type here..." />
+            </Form.Item>
+
+            {/* Remember Me and Forgot Password */}
+            <div className="flex justify-between items-center mb-4">
+              <Checkbox>Remember me</Checkbox>
+              <a href="#" className="text-blue-500 hover:underline">
+                Forgot Password?
+              </a>
+            </div>
+
+            {/* Login Button */}
+            <Form.Item>
+              <Button
+                type="primary"
+                htmlType="submit"
+                className="w-full bg-red-500 hover:bg-red-600 text-white font-bold"
+              >
+                Log In
+              </Button>
+            </Form.Item>
+          </Form>
+
+          {/* OR Divider */}
+          <div className="flex items-center my-4">
+            <div className="border-t border-gray-300 flex-grow"></div>
+            <span className="mx-2 text-gray-500">OR</span>
+            <div className="border-t border-gray-300 flex-grow"></div>
+          </div>
+
+          {/* Social Login Buttons */}
+          <div className="flex flex-col gap-2">
+            <Button
+              icon={<GoogleOutlined />}
+              className="w-full flex items-center justify-center border-gray-300"
+            >
+              Log In with Google
+            </Button>
+            <Button
+              icon={<FacebookOutlined />}
+              className="w-full flex items-center justify-center border-gray-300"
+            >
+              Log In with Facebook
+            </Button>
+            <Button
+              icon={<AppleOutlined />}
+              className="w-full flex items-center justify-center border-gray-300"
+            >
+              Log In with Apple
+            </Button>
+          </div>
+
+          {/* Sign Up Link */}
+          <div className="text-center mt-6">
+            <span className="text-gray-500">New User? </span>
+            <a href="#" className="text-blue-500 hover:underline">
+              SIGN UP HERE
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Login;
