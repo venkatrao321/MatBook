@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Button, Input } from 'antd';
 import { ArrowDownOutlined, MoreOutlined, ArrowUpOutlined, MenuOutlined, CaretLeftFilled, CaretRightFilled, SearchOutlined, PushpinOutlined } from '@ant-design/icons';
+import WorkflowCreator from './workflowCreator';
 
 const WorkflowList = ({ onLogout }) => {
   const [searchQuery, setSearchQuery] = useState(""); // State for search query
   const [currentPage, setCurrentPage] = useState(1); // State for current page
+  const [showCreator, setShowCreator] = useState(false); // State to toggle WorkflowCreator
   const rowsPerPage = 5; // Number of rows per page
 
   // Sample data to match the screenshot
@@ -28,6 +30,10 @@ const WorkflowList = ({ onLogout }) => {
   const paginatedData = filteredData.slice(startIndex, startIndex + rowsPerPage);
 
   const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+
+  if (showCreator) {
+    return <WorkflowCreator onBack={() => setShowCreator(false)} />; // Pass onBack callback
+  }
 
   return (
     <div className="bg-white shadow-sm border border-gray-200 rounded-lg w-full max-w-full mx-auto">
@@ -58,7 +64,11 @@ const WorkflowList = ({ onLogout }) => {
               onChange={(e) => setSearchQuery(e.target.value)} // Update searchQuery on input change
             />
           </div>
-          <Button type="primary" className="bg-neutral-300 hover:bg-gray-800">
+          <Button
+            type="primary"
+            className="bg-neutral-300 hover:bg-gray-800"
+            onClick={() => setShowCreator(true)} // Show WorkflowCreator on click
+          >
             + Create New Process
           </Button>
         </div>
