@@ -17,14 +17,14 @@ const Login = ({ messageApi, onLoginSuccess }) => {
     const { email, password } = values;
 
     try {
-      // Fetch login data from the JSON file
+      // Simulate fetching login data from a database or API
       const response = await fetch("/src/database/login.json");
       const loginData = await response.json();
 
       // Validate credentials
       if (email === loginData.email && password === loginData.password) {
         messageApi.success("Login successful!");
-        onLoginSuccess(); // Notify parent component of successful login
+        onLoginSuccess(); 
       } else {
         messageApi.error("Invalid email or password!");
       }
