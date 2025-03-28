@@ -9,7 +9,9 @@ createRoot(document.getElementById('root')).render(
       theme={{
         token: {
           colorPrimary: '#ff5733', // Custom primary button color
+          colorFillSecondary: '#050505', // Custom secondary button color
         },
+
       }}
     >
     <App />

@@ -9,7 +9,7 @@ import logo from "../assets/logo.svg";
 import "../app.css";
 import WorkflowBuilder from "./WorkList";
 
-const Login = ({ messageApi }) => {
+const Login = ({ messageApi, onLoginSuccess }) => {
   const [loading, setLoading] = useState(false);
 
   const handleLogin = async (values) => {
@@ -24,7 +24,7 @@ const Login = ({ messageApi }) => {
       // Validate credentials
       if (email === loginData.email && password === loginData.password) {
         messageApi.success("Login successful!");
-        return (<WorkflowBuilder></WorkflowBuilder>);
+        onLoginSuccess(); // Notify parent component of successful login
       } else {
         messageApi.error("Invalid email or password!");
       }
@@ -105,7 +105,7 @@ const Login = ({ messageApi }) => {
               <Button
                 type="primary"
                 htmlType="submit"
-                className="w-full bg-red-500 hover:bg-red-600 text-white font-bold"
+                className="w-full bg-black hover:bg-gray-800 text-white font-bold"
                 loading={loading}
               >
                 Log In
@@ -124,19 +124,19 @@ const Login = ({ messageApi }) => {
           <div className="flex flex-col gap-2">
             <Button
               icon={<GoogleOutlined />}
-              className="w-full flex items-center justify-center border-gray-300"
+              className="w-full flex items-center justify-center bg-black hover:bg-gray-800 text-white"
             >
               Log In with Google
             </Button>
             <Button
               icon={<FacebookOutlined />}
-              className="w-full flex items-center justify-center border-gray-300"
+              className="w-full flex items-center justify-center bg-black hover:bg-gray-800 text-white"
             >
               Log In with Facebook
             </Button>
             <Button
               icon={<AppleOutlined />}
-              className="w-full flex items-center justify-center border-gray-300"
+              className="w-full flex items-center justify-center bg-black hover:bg-gray-800 text-white"
             >
               Log In with Apple
             </Button>
