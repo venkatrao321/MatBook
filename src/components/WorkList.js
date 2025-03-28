@@ -18,7 +18,7 @@ const WorkflowBuilder = () => {
       {/* Header */}
       <div className="p-4 flex items-center border-b">
         <button className="mr-4 p-2 hover:bg-gray-100 rounded">
-          <MenuOutlined />
+            <MenuOutlined />
         </button>
         <h2 className = "text-xl font-semibold text-gray-800 flex-grow">Workflow Builder</h2>
         <button 
