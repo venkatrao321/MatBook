@@ -7,6 +7,7 @@ import {
 } from "@ant-design/icons";
 import logo from "../assets/logo.svg";
 import "../app.css";
+import WorkflowBuilder from "./WorkList";
 
 const Login = ({ messageApi }) => {
   const [loading, setLoading] = useState(false);
@@ -23,6 +24,7 @@ const Login = ({ messageApi }) => {
       // Validate credentials
       if (email === loginData.email && password === loginData.password) {
         messageApi.success("Login successful!");
+        return (<WorkflowBuilder></WorkflowBuilder>);
       } else {
         messageApi.error("Invalid email or password!");
       }
