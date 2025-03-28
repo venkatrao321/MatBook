@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Input, Button, Checkbox } from "antd";
 import {
   GoogleOutlined,
@@ -7,7 +7,33 @@ import {
 } from "@ant-design/icons";
 import logo from "../assets/logo.svg";
 import "../app.css";
-const Login = () => {
+
+const Login = ({ messageApi }) => {
+  const [loading, setLoading] = useState(false);
+
+  const handleLogin = async (values) => {
+    setLoading(true);
+    const { email, password } = values;
+
+    try {
+      // Fetch login data from the JSON file
+      const response = await fetch("/src/database/login.json");
+      const loginData = await response.json();
+
+      // Validate credentials
+      if (email === loginData.email && password === loginData.password) {
+        messageApi.success("Login successful!");
+      } else {
+        messageApi.error("Invalid email or password!");
+      }
+    } catch (error) {
+      messageApi.error("An error occurred while logging in.");
+      console.error("Error fetching login data:", error);
+    }
+
+    setLoading(false);
+  };
+
   return (
     <div className="logincontainer flex h-screen ">
       {/* Left Section */}
@@ -35,14 +61,15 @@ const Login = () => {
       </div>
 
       {/* Right Section */}
-      <div className="w-1/2 flex justify-center items-center ">
-        <div className="mx-auto px-6 relative bg-white">
-          <h2 className="text-xl font-semibold text-gray-500 mb-1">
+      
+      <div className="w-1/2 flex items-end justify-start">
+        <div className="px-6 relative bg-white py-6 w-96 rounded-t-lg">
+          <h6 className="text font-semibold text-gray-500 mb-1">
             WELCOME BACK!
-          </h2>
-          <h1 className="text-3xl font-bold mb-6">Log In to your Account</h1>
+          </h6>
+          <h1 className="text-xl font-bold mb-6">Log In to your Account</h1>
 
-          <Form layout="vertical">
+          <Form layout="vertical" onFinish={handleLogin}>
             {/* Email Input */}
             <Form.Item
               label="Email"
@@ -77,6 +104,7 @@ const Login = () => {
                 type="primary"
                 htmlType="submit"
                 className="w-full bg-red-500 hover:bg-red-600 text-white font-bold"
+                loading={loading}
               >
                 Log In
               </Button>
