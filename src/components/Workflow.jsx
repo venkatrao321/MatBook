@@ -1,22 +1,40 @@
 import React from "react";
-import { Background, Controls, ReactFlow, useEdgesState, useNodesState } from "@xyflow/react";
+import {
+  Background,
+  Controls,
+  ReactFlow,
+  useEdgesState,
+  useNodesState,
+} from "@xyflow/react";
 
 import "@xyflow/react/dist/style.css";
-
-const initialNodes = [
-  { id: "1", position: { x: 250, y: 250 }, data: { label: "Start" } },
-  { id: "2", position: { x: 250, y: 400 }, data: { label: "End" } },
-];
-const initialEdges = [{ id: "e1-2", source: "1", target: "2" }];
-
+import { initialEdges,initialNodes } from "./Workflow.constant";
+import CircleNode from "./CircleNode";
+import CustomEdge from "./customEdge";
+const nodeTypes = {
+  'Start': CircleNode,
+  "End": CircleNode,
+};
+const edgeTypes = {
+  customEdge: CustomEdge,
+};
 function Workflow() {
-  const [nodes, setNodes,onNodesChange  ] = useNodesState(initialNodes);
-  const [edges, setEdges,onEdgesChange] = useEdgesState(initialEdges);
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
-      <ReactFlow nodes={nodes} edges={edges} onNodesChange={onNodesChange} onEdgesChange={onEdgesChange} fitView>
+      <ReactFlow
+        nodes={nodes}
+        edges={edges}
+        onNodesChange={onNodesChange}
+        onEdgesChange={onEdgesChange}
+        style={{backgroundColor: '#F2E3C3' }}
+        nodeTypes={nodeTypes}
+        edgeTypes={edgeTypes}
+        fitView
+      >
         <Background variant="dots" />
-        <Controls />  
+        <Controls />
       </ReactFlow>
     </div>
   );
