@@ -1,19 +1,39 @@
-import React from "react";
-import { Handle, Position } from "@xyflow/react";
-import { Card } from "antd";
+import { Handle, Position } from '@xyflow/react';
 
-const CustomNode = ({ data }) => {
+function TextUpdaterNode({ data, isConnectable }) {
+  const isStartNode = data.value === 'Start';
+
   return (
-    <Card
-      title={data.label}
-      bordered={true}
-      style={{ width: 150, textAlign: "center", background: "#asdas" }}
+    <div
+      style={{
+        width: 100,
+        height: 100,
+        borderRadius: '50%',
+        backgroundColor: isStartNode ? '#FFD700' : '#FF6347', // Yellow for Start, Red for End
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        fontWeight: 'bold',
+        color: '#000',
+        position: 'relative',
+      }}
     >
-      <Handle type="target" position={Position.Top} />
-      <div>{data.description}</div>
-      <Handle type="source" position={Position.Bottom} />
-    </Card>
+      {data.value}
+      <Handle
+        type={isStartNode ? 'source' : 'target'} // Source for Start, Target for End
+        position={isStartNode ? Position.Bottom : Position.Top} // Bottom for Start, Top for End
+        id={isStartNode ? 'bottom' : 'top'} // Assign unique id for handles
+        style={{
+          background: '#555',
+          [isStartNode ? 'bottom' : 'top']: -10, // Adjust position for Bottom or Top
+          left: '50%',
+          transform: 'translateX(-50%)',
+        }}
+        isConnectable={isConnectable}
+      />
+    </div>
   );
-};
+}
 
-export default CustomNode;
+export default TextUpdaterNode;

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Input } from 'antd';
 import { ArrowDownOutlined, MoreOutlined, ArrowUpOutlined, MenuOutlined, CaretLeftFilled, CaretRightFilled, SearchOutlined, PushpinOutlined } from '@ant-design/icons';
 import WorkflowCreator from './workflowCreator';
+import Workflow from './Workflow';
 
 const WorkflowList = ({ onLogout }) => {
   const [searchQuery, setSearchQuery] = useState(""); // State for search query
@@ -32,7 +33,8 @@ const WorkflowList = ({ onLogout }) => {
   const totalPages = Math.ceil(filteredData.length / rowsPerPage);
 
   if (showCreator) {
-    return <WorkflowCreator onBack={() => setShowCreator(false)} />; // Pass onBack callback
+    return <Workflow></Workflow>
+    // return <WorkflowCreator onBack={() => setShowCreator(false)} />; // Pass onBack callback
   }
 
   return (
