@@ -24,7 +24,7 @@ function Workflow({onBack}) {
 
   const handleNodesChange = useCallback(onNodesChange, [onNodesChange]);
   const handleEdgesChange = useCallback(onEdgesChange, [onEdgesChange]);
-
+ 
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
      <div className="p-4 absolute z-10 top-5 left-5">
@@ -43,6 +43,7 @@ function Workflow({onBack}) {
         onEdgesChange={handleEdgesChange}
         style={{backgroundColor: '#F2E3C3' }}
         nodeTypes={nodeTypes}
+       
         edgeTypes={edgeTypes}
         fitView
       >

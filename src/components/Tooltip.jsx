@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "antd";
-import { useReactFlow } from "@xyflow/react";
+import { useReactFlow,MarkerType } from "@xyflow/react";
+
 
 const Tooltip = ({ sourceNodeId, targetNodeId }) => {
   const { setNodes, setEdges, getNodes, getEdges } = useReactFlow();
@@ -53,12 +54,25 @@ const Tooltip = ({ sourceNodeId, targetNodeId }) => {
             source: sourceNodeId,
             target: newNodeId,
             type: "customEdge",
+            markerEnd: {
+                  type: MarkerType.ArrowClosed,
+                  width: 20,
+                  height: 20,
+                  color: '#828282',
+                }
           },
+
           {
             id: `e-${newNodeId}-${targetNodeId}`,
             source: newNodeId,
             target: targetNodeId,
             type: "customEdge",
+            markerEnd: {
+                  type: MarkerType.ArrowClosed,
+                  width: 20,
+                  height: 20,
+                  color: '#828282',
+                }
           },
         ])
     );

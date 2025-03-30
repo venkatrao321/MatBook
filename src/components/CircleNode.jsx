@@ -1,22 +1,15 @@
 import { Handle, Position } from '@xyflow/react';
 import React, { memo, useState } from 'react';
 import CustomModal from './CustomModal';
-
+import { useReactFlow } from '@xyflow/react';
 const CircleNode = ({ data, id }) => {
     console.log("Rendering CircleNode:", data, id);
+  const { setNodes, setEdges, getNodes, getEdges } = useReactFlow();
+    const nodes = getNodes();
 
-    const [isModalVisible, setIsModalVisible] = useState(false);
+    console.log("Rendering CircleNode:", nodes);
 
-    const handleNodeClick = () => {
-        console.log(`Node clicked: ${data.label}`); // Debug log to verify the node click
-        if (data.label === "API Call") {
-            setIsModalVisible(true); // Open the modal when "API Call" node is clicked
-        }
-    };
-
-    const handleModalClose = () => {
-        setIsModalVisible(false); // Close the modal
-    };
+ 
 
     const handlerStartprops = {
         type: 'source',
@@ -34,8 +27,7 @@ const CircleNode = ({ data, id }) => {
     return (
         <>
             <div
-                className="flex justify-center items-center bg-beige cursor-pointer"
-                onClick={handleNodeClick} // Handle node click
+                className="flex justify-center items-center bg-beige cursor-pointer" // Handle node click
             >
                 <div className="relative w-24 h-24 flex justify-center items-center">
                     <div
@@ -51,12 +43,7 @@ const CircleNode = ({ data, id }) => {
                 </div>
                 <Handle {...(data.label === "Start" ? handlerStartprops : handlerEndprops)} />
             </div>
-            {isModalVisible && (
-                <CustomModal
-                    isModalOpen={isModalVisible}
-                    onClose={handleModalClose}
-                />
-            )}
+           
         </>
     );
 };
