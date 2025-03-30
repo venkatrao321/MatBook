@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import {
   Background,
   Controls,
@@ -21,13 +21,17 @@ const edgeTypes = {
 function Workflow() {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+
+  const handleNodesChange = useCallback(onNodesChange, [onNodesChange]);
+  const handleEdgesChange = useCallback(onEdgesChange, [onEdgesChange]);
+
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
       <ReactFlow
         nodes={nodes}
         edges={edges}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
+        onNodesChange={handleNodesChange}
+        onEdgesChange={handleEdgesChange}
         style={{backgroundColor: '#F2E3C3' }}
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}
