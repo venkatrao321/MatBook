@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Input } from 'antd';
 import { ArrowDownOutlined, MoreOutlined, ArrowUpOutlined, MenuOutlined, CaretLeftFilled, CaretRightFilled, SearchOutlined, PushpinOutlined } from '@ant-design/icons';
-import WorkflowCreator from './workflowCreator';
+
 import Workflow from './Workflow';
 
 const WorkflowList = ({ onLogout }) => {

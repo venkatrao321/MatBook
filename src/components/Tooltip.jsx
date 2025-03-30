@@ -17,7 +17,7 @@ const Tooltip = ({ sourceNodeId, targetNodeId }) => {
     if (!sourceNode || !targetNode) return;
 
     // Calculate the new node's position
-    const newY = (sourceNode.position.y + targetNode.position.y) / 2;
+    const newY = (sourceNode.position.y + targetNode.position.y+150) / 2;
 
     // Move all nodes below the target node downwards
     setNodes((prevNodes) =>
