@@ -6,7 +6,7 @@ import {
   AppleOutlined,
 } from "@ant-design/icons";
 import logo from "../assets/logo.svg";
-import "../app.css";
+import "../App.css"
 import WorkflowBuilder from "./WorkList";
 
 const Login = ({ messageApi, onLoginSuccess }) => {
