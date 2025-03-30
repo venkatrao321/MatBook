@@ -6,7 +6,7 @@ import {
   useEdgesState,
   useNodesState,
 } from "@xyflow/react";
-
+import { Button } from "antd";
 import "@xyflow/react/dist/style.css";
 import { initialEdges,initialNodes } from "./Workflow.constant";
 import CircleNode from "./CircleNode";
@@ -18,7 +18,7 @@ const nodeTypes = {
 const edgeTypes = {
   customEdge: CustomEdge,
 };
-function Workflow() {
+function Workflow({onBack}) {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
@@ -27,6 +27,15 @@ function Workflow() {
 
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
+     <div className="p-4 absolute z-10 top-5 left-5">
+        <Button
+          type="primary"
+          className="bg-black hover:bg-gray-800 text-white mb-4"
+          onClick={onBack}
+        >
+          Back
+        </Button>
+      </div>
       <ReactFlow
         nodes={nodes}
         edges={edges}

@@ -33,7 +33,7 @@ const WorkflowList = ({ onLogout }) => {
   const totalPages = Math.ceil(filteredData.length / rowsPerPage);
 
   if (showCreator) {
-    return <Workflow></Workflow>
+    return <Workflow onBack={() => setShowCreator(false)}></Workflow>
     // return <WorkflowCreator onBack={() => setShowCreator(false)} />; // Pass onBack callback
   }
 
