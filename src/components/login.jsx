@@ -1,28 +1,24 @@
 import React, { useState } from "react";
 import { Form, Input, Button, Checkbox } from "antd";
-import {
-  GoogleOutlined,
-  FacebookOutlined,
-  AppleOutlined,
-} from "@ant-design/icons";
+import { GoogleOutlined, FacebookOutlined, AppleOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom"; // Import Link for navigation
 import logo from "../assets/logo.svg";
-import "../App.css"
+import "../App.css";
 import WorkflowBuilder from "./WorkList";
 
 const Login = ({ messageApi, onLoginSuccess }) => {
   const [loading, setLoading] = useState(false);
 
-  const handleLogin = async (values) => {
+  const handleLogin = (values) => {
     setLoading(true);
     const { email, password } = values;
 
     try {
-      // Simulate fetching login data from a database or API
-      const response = await fetch("/src/database/login.json");
-      const loginData = await response.json();
+      // Retrieve signup data from localStorage
+      const storedData = JSON.parse(localStorage.getItem('signupData'));
 
       // Validate credentials
-      if (email === loginData.email && password === loginData.password) {
+      if (storedData && email === storedData.email && password === storedData.password) {
         messageApi.success("Login successful!");
         onLoginSuccess(); 
       } else {
@@ -30,7 +26,7 @@ const Login = ({ messageApi, onLoginSuccess }) => {
       }
     } catch (error) {
       messageApi.error("An error occurred while logging in.");
-      console.error("Error fetching login data:", error);
+      console.error("Error retrieving login data:", error);
     }
 
     setLoading(false);
@@ -145,9 +141,9 @@ const Login = ({ messageApi, onLoginSuccess }) => {
           {/* Sign Up Link */}
           <div className="text-center mt-6">
             <span className="text-gray-500">New User? </span>
-            <a href="#" className="text-blue-500 hover:underline">
+            <Link to="/signup" className="text-blue-500 hover:underline">
               SIGN UP HERE
-            </a>
+            </Link>
           </div>
         </div>
       </div>
